@@ -8,4 +8,5 @@ test('Login validation test', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Login' })).toBeEnabled();
   await page.getByRole('button', { name: 'Login' }).click();
   await expect(page).toHaveURL(/dashboard|login/);
+  await page.screenshot({path :"screenshot/login_demo.png"})
 });
