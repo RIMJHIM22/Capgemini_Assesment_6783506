@@ -1,16 +1,17 @@
-import { test, expect } from '@playwright/test';
-test("Question 1", async ({ page }) => {
-    await page.goto("https://www.automationtesting.co.uk/dropdown.html");
-    const cars = await page.locator("//select[@id='cars']/option").all();
-    await page.screenshot({path: `tests/date_11_03_26/screenshot/question_1${Date.now()}.png`});
+import { test, expect } from "@playwright/test";
 
-    const expected = ["Audi","BMW","Ford","Honda","Jeep","Mercedes","Suzuki","Volkswagen"];
-    const actual = [];
-    for (const car of cars) {
-        const brand = await car.textContent();
-        actual.push(brand?.trim());   
-    }
-    await expect(actual).toEqual(expected);
-
+test("Question 2", async ({ page }) => {
+    await page.goto("https://www.saucedemo.com");
+    await page.locator('#user-name').fill("standard_user");
+    await page.locator('#password').fill("secret_sauce");
+    await page.locator('#login-button').click();
+    await page.locator('//select[@class="product_sort_container"]').selectOption({ value: "lohi" });
+    const addCartButton = page.locator('#add-to-cart-sauce-labs-onesie');
+    await addCartButton.click();
+    const removeButton=await page.locator('#remove-sauce-labs-onesie');
+    await expect(removeButton).toHaveText("Remove");
+    const cartCount = page.locator('.shopping_cart_badge');
+    await expect(cartCount).toHaveText("1");
+    await page.screenshot({path:"screeshot/Day16_task2.png"});
 
 });
