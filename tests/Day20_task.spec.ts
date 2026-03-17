@@ -1,5 +1,5 @@
 import {test} from "@playwright/test"
-import Flipkart from "../Home.page.ts"
+import Flipkart from "../pom/Home.page.ts"
 test("Flipkart Scenario",async({page})=>{
     await page.goto("https://Flipkart.com");
     const flipkartPage=new Flipkart(page);
